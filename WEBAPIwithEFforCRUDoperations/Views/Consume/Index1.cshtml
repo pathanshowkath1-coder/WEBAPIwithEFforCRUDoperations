@@ -1,0 +1,31 @@
+﻿<html>
+<body>
+    <h1>Web API - POST</h1>
+    <form>
+        Emp Name:<input type="text" id="txt2" />
+        <br /><br />
+        Salary:<input type="text" id="txt3" />
+        <br /><br />
+        <input type="submit" id="button1" value="INSERT" />
+        <div id="div1"></div>
+    </form>
+    <script src="~/Scripts/jquery-3.7.0.js"></script>
+    <script>
+        $("#button1").click(fun1)
+        function fun1(event)
+        {
+            event.preventDefault();
+            var mydata = { "EmpName": $("#txt2").val(), "Salary": $("#txt3").val() };
+            $.ajax({ url: "/api/Employee", data: mydata, type: "POST", success: fun2, error: fun3 });
+        }
+        function fun2(response)
+        {
+            $("#div1").html(response);
+        }
+        function fun3(xhr)
+        {
+            alert(xhr.responseText);
+        }
+    </script>
+</body>
+</html>

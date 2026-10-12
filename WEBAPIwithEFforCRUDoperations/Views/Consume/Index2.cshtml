@@ -1,0 +1,34 @@
+﻿<html>
+<body>
+    <h1>Web API - PUT</h1>
+    <form>
+        Existing Emp Id:<input type="text" id="txt1" />
+        <br /><br />
+        Emp Name:<input type="text" id="txt2" />
+        <br /><br />
+        Salary:<input type="text" id="txt3" />
+        <br /><br />
+        <input type="submit" id="button1" value="UPDATE" />
+        <div id="div1"></div>
+    </form>
+    <script src="~/Scripts/jquery-3.7.0.js"></script>
+    <script>
+        $("#button1").click(fun1);
+        function fun1(event)
+        {
+            event.preventDefault();
+            var mydata = { "EmpId": $("txt1").val(), "EmpName": $("txt2"), "Salary": $("txt3").val() };
+            $.ajax({ URL: "/api/Employee", data:mydata, type: "PUT", success: fun2, error: fun3 });
+
+        }
+        function fun2(response)
+        {
+            $("#div1").html(response);
+        }
+        function fun3(xhr)
+        {
+            alert(xhr.responseText);
+        }
+    </script>
+</body>
+</html>

@@ -1,0 +1,28 @@
+﻿<html>
+<body>
+    <h2>Web API - Delete</h2>
+    <form>
+        Existing Emp Id: <input type="text" id="txt1" />
+        <br /><br />
+        <input type="submit" id="button1" value="DELETE" />
+        <div id="div1"></div>
+    </form>
+    <script src="~/Scripts/jquery-3.7.0.js"></script>
+    <script>
+        $("#button1").click(fun1);
+        function fun1(event)
+        {
+            event.preventDefault();
+            $.ajax({ url: "/api/Employee?empid=" + $("#txt1").val(), type: "DELETE", success: fun2, error: fun3 });
+        }
+        function fun2(response)
+        {
+            $(#div1).html(response);
+        }
+        function fun3(xhr)
+        {
+            alert(xhr.responseText);
+        }
+    </script>
+</body>
+</html>
